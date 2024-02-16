@@ -1,5 +1,4 @@
-# NBA Odds Predictor (Internal Documentation)
-
+# NBA Odds Predictor
 ## Project Overview
 
 Welcome to the internal documentation for the NBA Odds Predictor project. This repository houses our ongoing efforts to develop a machine learning model aimed at predicting NBA game odds. The project is currently in the data collection and preprocessing phase, and this documentation is intended for team members and specific collaborators.
