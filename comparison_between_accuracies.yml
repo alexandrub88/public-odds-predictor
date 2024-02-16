@@ -1,0 +1,61 @@
+Without taking time into consideration
+player_points - True: 216, False: 168, Neutral: 25, Accuracy: 56.25%, Accuracy with neutral: 58.92%
+player_assists - True: 129, False: 254, Neutral: 26, Accuracy: 33.68%, Accuracy with neutral: 37.90%
+player_tpm - True: 105, False: 304, Neutral: 0, Accuracy: 25.67%, Accuracy with neutral: 25.67%
+player_turnovers - True: 156, False: 231, Neutral: 22, Accuracy: 40.31%, Accuracy with neutral: 43.52%
+
+player_blocks - True: 60, False: 324, Neutral: 25, Accuracy: 15.62%, Accuracy with neutral: 20.78%
+
+player_rebounds - True: 222, False: 163, Neutral: 24, Accuracy: 57.66%, Accuracy with neutral: 60.15%
+player_fga - True: 195, False: 188, Neutral: 26, Accuracy: 50.91%, Accuracy with neutral: 54.03%
+
+player_steals - True: 126, False: 258, Neutral: 25, Accuracy: 32.81%, Accuracy with neutral: 36.92%
+
+Taking time into consideration
+player_points - True: 213, False: 167, Neutral: 29, Accuracy: 56.05%, Accuracy with neutral: 59.17%
+player_assists - True: 143, False: 240, Neutral: 26, Accuracy: 37.34%, Accuracy with neutral: 41.32%
+player_tpm - True: 105, False: 304, Neutral: 0, Accuracy: 25.67%, Accuracy with neutral: 25.67%
+player_turnovers - True: 161, False: 223, Neutral: 25, Accuracy: 41.93%, Accuracy with neutral: 45.48%
+
+player_blocks - True: 36, False: 345, Neutral: 28, Accuracy: 9.45%, Accuracy with neutral: 15.65%
+
+player_rebounds - True: 230, False: 152, Neutral: 27, Accuracy: 60.21%, Accuracy with neutral: 62.84%
+player_fga - True: 219, False: 164, Neutral: 26, Accuracy: 57.18%, Accuracy with neutral: 59.90%
+
+player_steals - True: 77, False: 309, Neutral: 23, Accuracy: 19.95%, Accuracy with neutral: 24.45%
+
+Without taking time into consideration
+Accuracy: 56.25% 
+Accuracy with neutral: 58.92%
+Accuracy: 33.68% 
+Accuracy with neutral: 37.90%
+Accuracy: 25.67% 
+Accuracy with neutral: 25.67%
+Accuracy: 40.31% 
+Accuracy with neutral: 43.52%
+Accuracy: 15.62% 
+Accuracy with neutral: 20.78%
+Accuracy: 57.66% 
+Accuracy with neutral: 60.15%
+Accuracy: 50.91% 
+Accuracy with neutral: 54.03%
+Accuracy: 32.81% 
+Accuracy with neutral: 36.92%
+
+Taking time into consideration
+Accuracy: 56.05% 
+Accuracy with neutral: 59.17%
+Accuracy: 37.34% 
+Accuracy with neutral: 41.32%
+Accuracy: 25.67% 
+Accuracy with neutral: 25.67%
+Accuracy: 41.93% 
+Accuracy with neutral: 45.48%
+Accuracy: 9.45% 
+Accuracy with neutral: 15.65%
+Accuracy: 60.21% 
+Accuracy with neutral: 62.84%
+Accuracy: 57.18% 
+Accuracy with neutral: 59.90%
+Accuracy: 19.95% 
+Accuracy with neutral: 24.45%

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ championship.name }} - {{ category|capfirst }}</h2>
+<ul class="list-group">
+    {% for player in players %}
+    <li class="list-group-item">
+        <!-- Ensure the URL name matches the pattern name in urls.py -->
+        <a href="{% url 'player_'|add:category player.id %}">{{ player.first_name }} {{ player.last_name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

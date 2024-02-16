@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sports Betting{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #004d40;
+            color: white;
+            padding: 10px 20px;
+        }
+
+        .navbar a {
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .navbar a:hover {
+            background-color: #00796b;
+            color: white;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 150px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .submenu a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .submenu a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .nav-item {
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-item:hover .submenu {
+            display: block;
+        }
+    </style>
+</head>
+
+<body data-url-base="{% url 'home' %}">
+    <nav class="navbar">
+        {% for sport in sports %}
+        <div class="nav-item" data-id="{{ sport.id }}">
+            {{ sport.name }}
+            <div class="submenu">
+                {% for championship in sport.championship_set.all %}
+                <!-- Removed the URL tag for championship_detail -->
+                <span class="championship-name" data-id="{{ championship.id }}">{{ championship.name }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </nav>
+
+    <div class="container mt-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script>
+        document.querySelectorAll('.nav-item').forEach(function (item) {
+            item.addEventListener('click', function (event) {
+                event.stopPropagation(); // Prevent bubbling to avoid multiple triggers
+                var sportId = this.dataset.id; // Get sport ID from data attribute
+
+                var baseUrl = document.body.getAttribute('data-url-base').slice(0, -1); // Remove trailing slash
+
+                fetch(`${baseUrl}/get_championships/${sportId}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        var submenu = this.querySelector('.submenu');
+                        submenu.innerHTML = ''; // Clear existing content
+
+                        data.championships.forEach(function (championship) {
+                            var championshipLink = document.createElement('a');
+                            championshipLink.className = 'championship-link';
+                            championshipLink.textContent = championship.name;
+                            championshipLink.dataset.id = championship.id;
+
+                            // Create secondary dropdown for the championship
+                            var championshipDropdown = document.createElement('div');
+                            championshipDropdown.className = 'championship-dropdown';
+
+                            ['Statistics', 'Odds', 'Predictions'].forEach(function (category) {
+                                var optionLink = document.createElement('a');
+                                optionLink.href = `${baseUrl}/championship/${championship.id}/${category.toLowerCase()}/players/`;
+                                optionLink.textContent = category;
+                                optionLink.dataset.category = category.toLowerCase();
+                                optionLink.dataset.championshipId = championship.id;
+
+                                optionLink.addEventListener('click', function (event) {
+                                    event.preventDefault();
+                                    window.location.href = this.href; // Redirect to the URL
+                                });
+
+                                championshipDropdown.appendChild(optionLink);
+                            });
+
+                            championshipLink.appendChild(championshipDropdown);
+                            submenu.appendChild(championshipLink);
+                        });
+
+                        submenu.style.display = 'block';
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        });
+
+        // Close submenu when clicking elsewhere
+        document.body.addEventListener('click', function (event) {
+            document.querySelectorAll('.submenu').forEach(function (submenu) {
+                submenu.style.display = 'none';
+            });
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

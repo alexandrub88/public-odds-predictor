@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # Container for making predictions
+  player-predictions:
+    build: ./prediction-container/
+    volumes:
+      - ./prediction-container:/data
+      - ./common-files/:/common
+    env_file:
+      - ./prediction-container/.env
+      # Add other environment variables as needed
+    command: python /data/ou_player_predictor_probabilities_with_input_all_parameters.py
+
+  # Final data aggregator
+  predictions-aggregator:
+    build: ./prediction-aggregator/
+    volumes:
+      - ./prediction-aggregator/:/data
+      - ./common-files:/common
+    env_file:
+      - ./prediction-aggregator/.env
+    command: python /data/final_data_comparator_for_all_criterias_with_actual_data_from_first_match.py
+
+  # Django Postgre DB container
+  db:
+    image: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    env_file:
+      - ./webapp-django/.env
+
+  # Django webapplication
+  web:
+    build: ./webapp-django/
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py createsu && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./webapp-django/:/app
+      - ./common-files:/common
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - ./webapp-django/.env
+volumes:
+  db_data:

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Players in {{ championship.name }}</h2>
+<ul>
+    {% for player in players %}
+    <li>
+        <a href="{% url 'player_stats' player.id %}">{{ player.first_name }} {{ player.last_name }} - Statistics</a>
+        <!-- Add links to odds and predictions if needed -->
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

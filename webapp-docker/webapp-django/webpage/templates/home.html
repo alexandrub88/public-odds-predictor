@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav class="navbar">
+    {% for sport in sports %}
+    <div class="nav-item">
+        <a href="{% url 'championships' sport.id %}">{{ sport.name }}</a>
+    </div>
+    {% endfor %}
+</nav>
+{% endblock %}

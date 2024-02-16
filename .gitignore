@@ -1,0 +1,7 @@
+*.csv
+*.out
+*.env
+*.pyc
+.DS_Store
+*.joblib
+*.h5

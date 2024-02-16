@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Statistics for {{ player.first_name }} {{ player.last_name }}</h1>
+
+<div class="chart-container">
+    <canvas id="pointsChart"></canvas>
+    <canvas id="assistsChart"></canvas>
+    <canvas id="turnoversChart"></canvas>
+    <canvas id="ftmChart"></canvas>
+    <canvas id="tpmChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const stats = JSON.parse('{{ stats_json|safe }}');
+
+    const ctxPoints = document.getElementById('pointsChart').getContext('2d');
+    const ctxAssists = document.getElementById('assistsChart').getContext('2d');
+    const ctxTurnovers = document.getElementById('turnoversChart').getContext('2d');
+    const ctxFtm = document.getElementById('ftmChart').getContext('2d');
+    const ctxTpm = document.getElementById('tpmChart').getContext('2d');
+
+    new Chart(ctxPoints, {
+        type: 'line',
+        data: {
+            labels: stats.game_dates,
+            datasets: [{ label: 'Points', data: stats.points, fill: false, borderColor: 'rgb(75, 192, 192)', tension: 0.1 }]
+        }
+    });
+    // Repeat for assists, turnovers, ftm, and tpm charts
+
+    // Example for Assists Chart
+    new Chart(ctxAssists, {
+        type: 'line',
+        data: {
+            labels: stats.game_dates,
+            datasets: [{ label: 'Assists', data: stats.assists, fill: false, borderColor: 'rgb(22, 160, 133)', tension: 0.1 }]
+        }
+    });
+
+    new Chart(ctxTurnovers, {
+        type: 'line',
+        data: {
+            labels: stats.game_dates,
+            datasets: [{ label: 'Turnovers', data: stats.assists, fill: false, borderColor: 'rgb(22, 160, 133)', tension: 0.1 }]
+        }
+    });
+
+    // Add turnovers, ftm, and tpm charts in a similar manner
+</script>
+{% endblock %}

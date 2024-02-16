@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Sports</h2>
+<ul>
+    {% for sport in sports %}
+    <li><a href="{% url 'championships' sport.id %}" onmouseover="showChampionships({{ sport.id }});">
+            {{ sport.name }}</a></li>
+    {% endfor %}
+</ul>
+<div id="championships-placeholder"></div>
+{% endblock %}

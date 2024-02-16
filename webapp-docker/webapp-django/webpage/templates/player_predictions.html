@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Predictions for {{ player.first_name }} {{ player.last_name }}</h2>
+
+<!-- Example of how you might display predictions -->
+<table>
+    <thead>
+        <tr>
+            <th>Game ID</th>
+            <th>Predicted Points</th>
+            <th>Over Probabilities</th>
+            <th>Under Probabilities</th>
+            <!-- Add more headers as needed -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for prediction in predictions %}
+        <tr>
+            <td>{{ prediction.game_id }}</td>
+            <td>{{ prediction.predicted_player_points }}</td>
+            <td>{{ prediction.over_probabilities_player_points }}</td>
+            <td>{{ prediction.under_probabilities_player_points }}</td>
+            <!-- Add more data as needed -->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
