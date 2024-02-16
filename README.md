@@ -17,7 +17,7 @@ The repository currently includes a Python script that interfaces with the NBA A
 Our roadmap for this project includes:
 
 - Developing and refining a machine learning model using the collected data.
-- Evaluating the model's ...
+- Evaluating the model's accuracy.
 
 ## Repository Contents
 
